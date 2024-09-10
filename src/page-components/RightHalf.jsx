@@ -4,7 +4,7 @@ import UpperWidget from "./UpperWidget"
 
 function RightHalf() {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-14">
       <UpperWidget />
       <LowerWidget />
     </div>
