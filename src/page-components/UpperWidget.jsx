@@ -8,7 +8,7 @@ function UpperWidget() {
   const [currentlyActive, setCurrentlyActive] = useState("about");
 
   return (
-    <div className="bg-[#363C43] h-[350px] w-[720px] rounded-3xl shadow-custom-no-blur shadow-black flex flex-col items-center justify-around">
+    <div className="bg-[#363C43] h-[316px] w-[720px] rounded-3xl shadow-custom-no-blur shadow-black flex flex-col items-center justify-around">
       <NavMenu currActive={currentlyActive} setActive={setCurrentlyActive} />
 
       {/* Content */}
