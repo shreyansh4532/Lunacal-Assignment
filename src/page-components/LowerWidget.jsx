@@ -1,12 +1,35 @@
-import { useRef } from "react";
+import { storage } from "@/firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useRef, useState } from "react";
 import { HiOutlineArrowSmallLeft } from "react-icons/hi2";
 import { HiOutlineArrowSmallRight } from "react-icons/hi2";
 
 function LowerWidget() {
   const inputRef = useRef();
 
+  const [images, setImages] = useState([]);
+
   const uploadFiles = (e) => {
     console.log(e.target.files[0]);
+    const file = e.target.files[0];
+
+    if (file) {
+      const uniqueFileName = `${Date.now()}`;
+      const storageRef = ref(storage, uniqueFileName);
+      uploadBytes(storageRef, file)
+        .then(() => {
+          console.log("Uploaded a blob or file!");
+          return getDownloadURL(storageRef);
+        })
+        .then((url) => {
+          setImages((prev) => [...prev, url]);
+          console.log(images);
+        })
+        .catch((error) => {
+          // Handle any errors
+          console.log(error);
+        });
+    }
   };
 
   const handleBtnClick = () => {
@@ -27,9 +50,9 @@ function LowerWidget() {
 
   return (
     <div className="bg-[#363C43] h-[330px] w-[720px] rounded-3xl shadow-custom-no-blur shadow-black">
-      <div className="mx-4 my-3 flex flex-col gap-20">
+      <div className="mx-14 my-4 flex flex-col gap-14">
         {/* Top Nav */}
-        <div className="flex justify-around">
+        <div className="flex justify-between mt-3">
           <button className="border-neutral-800 border-2 px-7 py-3 bg-black font-medium hover:text-white duration-200 transition-all rounded-2xl">
             Gallery
           </button>
@@ -43,6 +66,7 @@ function LowerWidget() {
             </button>
             <input
               type="file"
+              accept="image/*"
               className="hidden"
               ref={inputRef}
               onChange={uploadFiles}
@@ -63,16 +87,22 @@ function LowerWidget() {
         </div>
 
         {/* Slider */}
-        <div id="slider" className="flex overflow-x-auto gap-3 scrollbar-hide">
-          <div className="bg-[#343281] w-[120px] h-[120px] flex-shrink-0"></div>
-          <div className="bg-[#343281] w-[120px] h-[120px] flex-shrink-0"></div>
-          <div className="bg-[#343281] w-[120px] h-[120px] flex-shrink-0"></div>
-          <div className="bg-[#343281] w-[120px] h-[120px] flex-shrink-0"></div>
-          <div className="bg-[#343281] w-[120px] h-[120px] flex-shrink-0"></div>
-          <div className="bg-[#343281] w-[120px] h-[120px] flex-shrink-0"></div>
-          <div className="bg-[#343281] w-[120px] h-[120px] flex-shrink-0"></div>
-          <div className="bg-[#343281] w-[120px] h-[120px] flex-shrink-0"></div>
-        </div>
+        {images.length > 0 && (
+          <div
+            id="slider"
+            className="flex overflow-x-auto gap-3 scrollbar-hide"
+          >
+            {images.map((image, idx) => (
+              <div key={idx} className="flex-shrink-0">
+                <img
+                  src={image}
+                  alt=""
+                  className="rounded-3xl w-[190px] h-[179px]"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
