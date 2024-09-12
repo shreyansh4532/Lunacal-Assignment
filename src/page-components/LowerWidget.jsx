@@ -3,7 +3,6 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useEffect, useRef, useState } from "react";
 import { HiOutlineArrowSmallLeft } from "react-icons/hi2";
 import { HiOutlineArrowSmallRight } from "react-icons/hi2";
-import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import QMarkSVG from "./QMarkSVG";
 import WidgetSVG from "./WidgetSVG";
 
