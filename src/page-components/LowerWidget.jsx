@@ -11,9 +11,9 @@ function LowerWidget() {
 
   useEffect(() => {
     const storedImages = JSON.parse(localStorage.getItem("imgURL_arr"));
-    if (storedImages) {      
+    if (storedImages) {
       setImages(storedImages);
-    } else {      
+    } else {
       setImages([]);
     }
   }, []);
@@ -26,7 +26,9 @@ function LowerWidget() {
       const uniqueFileName = `${Date.now()}`;
       const storageRef = ref(storage, uniqueFileName);
       uploadBytes(storageRef, file)
-        .then(() => {
+        .then((snapshot) => {
+          console.log(snapshot);
+
           console.log("Uploaded a blob or file!");
           return getDownloadURL(storageRef);
         })
@@ -63,17 +65,20 @@ function LowerWidget() {
       <div className="mx-14 my-4 flex flex-col gap-14">
         {/* Top Nav */}
         <div className="flex justify-between mt-3">
-          <button className="border-neutral-800 border-2 px-7 py-3 bg-black font-medium hover:text-white duration-200 transition-all rounded-2xl">
+          <button className="px-7 py-3 bg-black font-medium hover:text-white duration-200 transition-all rounded-2xl">
             Gallery
           </button>
 
           <div className="flex items-center justify-evenly gap-5">
             <button
-              className="bg-[#6F787C] rounded-full py-2 px-4"
+              className="bg-[#363C43] rounded-full py-4 px-7 text-white font-medium relative 
+  before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-full before:border-t-2 before:border-l-2 before:border-white/70 before:blur-[4px] 
+  shadow-[10px_10px_15px_-3px_rgba(0,0,0,0.7)]"
               onClick={handleBtnClick}
             >
               + Add Image
             </button>
+
             <input
               type="file"
               accept="image/*"
@@ -82,13 +87,13 @@ function LowerWidget() {
               onChange={uploadFiles}
             />
             <button
-              className="ml-2 bg-[#101213] transform active:scale-75 rounded-full text-3xl font-medium p-2 text-[#6F787C]"
+              className="ml-2 bg-gradient-to-br from-[#303439] to-[#161718] transform active:scale-75 rounded-full text-3xl font-medium p-2 text-[#6F787C] shadow-[4px_5px_30px_5px_#101213]  shadow-[-5px_-3px_30px_-10px_#96BEE7]"
               onClick={() => moveSlider("left")}
             >
               <HiOutlineArrowSmallLeft />
             </button>
             <button
-              className="bg-[#101213] transform active:scale-75 rounded-full text-3xl font-medium p-2 text-[#6F787C]"
+              className="ml-2 bg-gradient-to-br from-[#303439] to-[#161718] transform active:scale-75 rounded-full text-3xl font-medium p-2 text-[#6F787C] shadow-[4px_5px_30px_5px_#101213]  shadow-[-5px_-3px_30px_-10px_#96BEE7]"
               onClick={() => moveSlider("right")}
             >
               <HiOutlineArrowSmallRight />
