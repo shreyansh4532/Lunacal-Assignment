@@ -19,6 +19,8 @@ function UpperWidget() {
       <div className="absolute top-[145px] left-[512px]">
         <WidgetSVG />
       </div>
+      <div className="absolute top-[140px] left-[1200px] w-2 h-16 rounded-lg bg-gradient-to-b from-[#888989] to-[#4A4E54] shadow-[4px_4px_4.9px_0px_rgba(0,0,0,0.25)]"></div>
+
       {/* <QuestionMarkSVG className="relative top-16 left-3 text-2xl" /> */}
       <div className="bg-[#363C43] h-[316px] w-[720px] rounded-3xl shadow-custom-no-blur shadow-black flex flex-col items-center justify-around">
         <NavMenu currActive={currentlyActive} setActive={setCurrentlyActive} />
