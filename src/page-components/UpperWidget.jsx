@@ -9,16 +9,16 @@ function UpperWidget() {
 
   return (
     <>
-      <div className="absolute top-[55px] left-[520px]">
+      <div className="relative top-[25px] left-[17px]">
         <QMarkSVG />
       </div>
-      <div className="absolute top-[145px] left-[512px]">
+      <div className="relative top-[60px] left-[8px]">
         <WidgetSVG />
       </div>
-      <div className="absolute top-[140px] left-[1200px] w-2 h-16 rounded-lg bg-gradient-to-b from-[#888989] to-[#4A4E54] shadow-[4px_4px_4.9px_0px_rgba(0,0,0,0.25)]"></div>
+      <div className="relative top-[206px] left-[687px] w-2 h-16 rounded-lg bg-gradient-to-b from-[#888989] to-[#4A4E54] shadow-[4px_4px_4.9px_0px_rgba(0,0,0,0.25)]"></div>
 
 
-      <div className="bg-[#363C43] h-[316px] w-[720px] rounded-3xl shadow-custom-no-blur shadow-black flex flex-col items-center justify-around">
+      <div className="bg-[#363C43] h-[316px] w-[720px] rounded-3xl shadow-custom-no-blur shadow-black flex flex-col items-center justify-around -mt-52">
         <NavMenu currActive={currentlyActive} setActive={setCurrentlyActive} />
 
         {/* Content */}

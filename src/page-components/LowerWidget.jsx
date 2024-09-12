@@ -64,10 +64,10 @@ function LowerWidget() {
 
   return (
     <>
-      <div className="absolute top-[440px] left-[520px]">
+      <div className="relative top-[140px] left-[15px] -mt-28">
         <QMarkSVG />
       </div>
-      <div className="absolute top-[555px] left-[513px]">
+      <div className="relative top-[200px] left-[8px]">
         <WidgetSVG />
       </div>
       <div className="bg-[#363C43] h-[330px] w-[720px] rounded-3xl shadow-custom-no-blur shadow-black">
