@@ -1,6 +1,6 @@
 import { storage } from "@/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HiOutlineArrowSmallLeft } from "react-icons/hi2";
 import { HiOutlineArrowSmallRight } from "react-icons/hi2";
 
@@ -8,6 +8,15 @@ function LowerWidget() {
   const inputRef = useRef();
 
   const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const storedImages = JSON.parse(localStorage.getItem("imgURL_arr"));
+    if (storedImages) {      
+      setImages(storedImages);
+    } else {      
+      setImages([]);
+    }
+  }, []);
 
   const uploadFiles = (e) => {
     console.log(e.target.files[0]);
@@ -23,6 +32,7 @@ function LowerWidget() {
         })
         .then((url) => {
           setImages((prev) => [...prev, url]);
+          localStorage.setItem("imgURL_arr", JSON.stringify(images));
           console.log(images);
         })
         .catch((error) => {
